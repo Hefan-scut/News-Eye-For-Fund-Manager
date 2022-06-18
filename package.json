@@ -1,0 +1,57 @@
+{
+  "name": "pipline",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2",
+    "classnames": "^2.2.6",
+    "clsx": "latest",
+    "moment": "^2.29.1",
+    "prop-types": "latest",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-feather": "^2.0.9",
+    "react-helmet": "^6.1.0",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.11.1",
+    "@material-ui/icons": "^4.9.1",
+    "formik": "^2.2.5",
+    "history": "^5.0.0",
+    "react-router-dom": "^5.2.0",
+    "yup": "^0.31.1"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
+}
