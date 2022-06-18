@@ -1,136 +1,49 @@
-# 利用AWS SageMaker BlazingText对股市新闻进行情感分类
+# 基金经理新闻眼
+## ——为基金管理者提供实时、科学、详细的新闻预警
 
-#### 一、介绍
-本项目是亚马逊华南地区金融知识图谱操作大赛的一个子产品。本项目基于AWS中SageMaker的BlazingText算法，针对基金经理对大量新闻难以判别的痛点，对大量股市新闻进行快速分类，从而识别出正面新闻和负面新闻，便于基金经理做下一步的分析。
+### 痛点
+1.在信息时代，各大媒体每日股市新闻成千上万条，基金经理难以从成千上万条新闻中识别到对自己有用的新闻。
 
+2.基金经理同时持仓多个股票或多个基金，难以快速确定新闻中是否包含自己所持仓的股票或新闻。
 
+3.新闻可能单纯只对某一支股票有影响，但一支股票会对某个行业或者其他股票产生影响，基金经理难以快速甄别。
 
+### 解决方案
+1.设计实时爬虫爬取各大媒体新闻，并存储到数据库中。
 
-#### 二、项目概况
-本项目的数据来源于通联数据，训练集共有167993条新闻，验证集共有41998条新闻。训练集精确度为0.9965，验证集精确度为0.8858。测试集共有3000条新闻，可信度大于90%的负面新闻共有44条，肉眼二次判断效果不错。
+2.填写基金经理所持仓股票，并存储到数据库中。
 
-![预测结果](https://images.gitee.com/uploads/images/2020/1117/141325_1580f078_7878388.png "5_1_mmexport1604831091425.png")
-![预测结果](https://images.gitee.com/uploads/images/2020/1117/105804_4c640390_7878388.png "屏幕截图.png")
+3.构建新闻情感分类模型甄别正负类新闻，将大于一定置信度的正负类新闻进行提取。
 
+4.构建实体识别模型，识别正负类新闻的股票信息、公司信息或基金信息。
 
+5.构建股市行业知识图谱，将识别出的股票、公司、基金信息去做进一步的关联。
 
+6.设计Demo，前后端、数据库与模型交互，方便基金经理进行操作。
 
-#### 三、使用工具
 
- **1.AWS SageMaker** 
+### 参考资料
+[1]陶恺,陶煌.一种基于深度学习的文本分类模型[J].太原师范学院学报(自然科学版),2020,19(04):45-51.
 
-Amazon SageMaker 是一项完全托管的服务，可以帮助开发人员和数据科学家快速构建、训练和部署机器学习 (ML) 模型。
+[2]Moirangthem Dennis Singh,Lee Minho. Hierarchical and lateral multiple timescales gated recurrent units with pre-trained encoder for long text classification[J]. Expert Systems With Applications,2021,165.
 
-SageMaker 完全消除了机器学习过程中每个步骤的繁重工作，让开发高质量模型变得更加轻松。
+[3]何铠. 基于自然语言处理的文本分类研究与应用[D].南京邮电大学,2020.
 
- **2.BlazingText** 
+[4]张军莲,张一帆,汪鸣泉,黄永健.基于图卷积神经网络的中文实体关系联合抽取[J/OL].计算机工程:1-10[2021-01-04].https://doi.org/10.19678/j.issn.1000-3428.0059574.
+[5]Santiso Sara,Pérez Alicia,Casillas Arantza. Adverse Drug Reaction extraction: Tolerance to entity recognition errors and sub-domain variants[J]. Computer Methods and Programs in Biomedicine,2021,199.
 
-BlazingText 算法提供高度优化的Word2vec和文本分类算法的实现。Word2vec 算法对很多下游自然语言处理 (NLP) 任务很有用，例如情感分析、命名实体识别、机器翻译等。
+[6]武国亮,徐继宁.基于命名实体识别任务反馈增强的中文突发事件抽取方法[J/OL].计算机应用:1-8[2021-01-04].http://kns.cnki.net/kcms/detail/51.1307.TP.20201209.1334.006.html.
 
-BlazingText的监督多类多标签文本分类算法可以使用多核 CPU 或 GPU 在几分钟内对超过 10 亿个单词的模型进行训练，获得的性能与最先进的深度学习文本分类算法相当。
+[7]李建,靖富营,刘军.基于改进BERT算法的专利实体抽取研究——以石墨烯为例[J].电子科技大学学报,2020,49(06):883-890.
 
-本项目将运用BlazingText中的有监督多分类算法，BlazingText主要用于英文情感分析，对中文分析不太友好，因此需要先用Jieba对中文文本进行分词后再使用该算法。
+[8]Gong Fan,Wang Meng,Wang Haofen,Wang Sen,Liu Mengyue. SMR: Medical Knowledge Graph Embedding for Safe Medicine Recommendation[J]. Big Data Research,2021,23.
 
- **3.jieba** 
+[9]刘胜京,高庆和,邓楹君,杜冠潮,郭俊,赵丰,王浩,郭军.基于知识图谱中医药诊治慢性前列腺炎研究现状分析[J/OL].中国中西医结合杂志:1-6[2021-01-04].http://kns.cnki.net/kcms/detail/11.2787.R.20201229.1500.002.html.
 
-中文分词工具
+[10]路威,赵丽君.兵要知识图谱的构建与应用研究[J/OL].测绘地理信息:1-6[2021-01-04].https://doi.org/10.14188/j.2095-6045.2020094.
 
- **4.中文金融情感词典** 
+https://github.com/Determined22/zh-NER-TF
 
-由于本项目主要是分析股市新闻，为了让分词更加科学，因此引用姜富伟等人编写的中文金融情感词典导入到Jieba库中，再对新闻数据进行分词。
 
-
-
-
-
-#### 四、文件描述
-
- **1.data_new.txt** 
-
-经过处理后的数据，包含209991条新闻标题和标签，以80%为训练集，20%为验证集。
-
-
- **2.中文金融情感词典_姜富伟等(2020).xlsx** 
-
-姜富伟等人编写的中文金融情感词典，适用于股市新闻分词。
-
-
- **3.jieba.txt** 
-
- 将中文金融情感词典写成txt格式，便于导入jieba库中。
-
-
- **4.股市新闻情感分析.ipynb** 
-
-主运行程序，包括数据清理，SageMaker-BlazingText配置，模型训练，超参数配置，模型部署，模型预测等。
-
-
-
-
-
-#### 五、项目流程
-
- **1.数据特征选择** 
-
-由于通联数据提供的数据量巨大(8G共1000多万条数据），需要根据数据字典确认好需要使用的数据特征。
-
-本项目特征选择相对简单，只有新闻标题一个特征，标签为通联打好标签的情感分类(正面、中性、负面)。
-
-
- **2.数据处理** 
-
-SageMaker的BlazingText算法对导入的数据有一定的要求。
-
-
- **2.1一般情况下仅支持英文** 
-
-在使用BlazingText时，如果直接把中文新闻标题进行导入，会导致预测精度极差，因此我们需要对中文新闻标题进行分词。
-
-这里使用Jieba以及金融情感词典进行分词，以间隔分割，使我们的中文标题格式类似于英文。
-
-
- **2.2标签数据有特定格式** 
-
-需要把数据处理成以下格式。
-
-__label__-1  金融 投资 带来 30亿 亏损！两家 港股 公司 交叉持股，股价 暴跌 一损俱损
-
-__label__-1  皇玺餐饮集团(08300) 前三季 由盈转亏 股东 应占 亏损 约 980万 港元
-
-
- **3.SageMaker、BlazingText以及初始参数设置** 
-
-参照Jupyter Notebook
-
-
- **4.调参** 
-
-初始参数可以根据Jupyter Notebook里面的参数进行配置后，查看模型的Accuracy.
-
-在具体的调参环节，我们可以使用AWS SageMaker的超参数优化作业自动进行调参，具体教程[请点击](https://docs.aws.amazon.com/zh_cn/sagemaker/latest/dg/automatic-model-tuning.html)
-
-下图是我的超参数调参作业
-
-
-![超参数优化作业](https://images.gitee.com/uploads/images/2020/1117/141227_f1e953ae_7878388.png "6_1_mmexport1604831087907.png")
-
-
-调参后可得到最优参数
-mode="supervised"
-
-buckets=3396748
-
-epochs=9
-
-min_count=5
-
-learning_rate=0.05
-
-vector_dim=84
-
-early_stopping=False
-
-min_epochs=5
-
-word_ngrams=2
-
+### 数据来源
+通联数据
